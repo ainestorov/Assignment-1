@@ -1,0 +1,609 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww16740\viewh10520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 > # Alex Nestorov\
+> # Econ 613\
+> # Assignment #1\
+> \
+> # Pull in data, summarize, and view/analyze to understand\
+> datsss <- read.csv("~/Documents/ECON 613/dat/datsss.csv")\
+> summary(datsss)\
+       X                                     schoolname     schoolcode                  sssdistrict  \
+ Min.   :   1                                     :3100   Min.   :  10101   Accra Metropolitan: 271  \
+ 1st Qu.:1542   KUMASI TECH. INST., KUMASI        :  15   1st Qu.:  30107   Kumasi Metro      : 262  \
+ Median :3083   ASUANSI TECH. INST., ASUANSI      :  12   Median :  50805                     : 179  \
+ Mean   :3083   BOLGATANGA TECH. INST., BOLGATANGA:  12   Mean   :1451181   Accra Metro       : 170  \
+ 3rd Qu.:4624   KPANDO TECH. INST., KPANDO        :  12   3rd Qu.:  71299   Ho Municipal      : 104  \
+ Max.   :6165   CAPE COAST TECH. INST., CAPE COAST:  11   Max.   :9100501   Tema              :  96  \
+                (Other)                           :3003                     (Other)           :5083  \
+    ssslong            ssslat      \
+ Min.   :-2.9267   Min.   : 4.835  \
+ 1st Qu.:-1.5972   1st Qu.: 5.690  \
+ Median :-0.7990   Median : 6.383  \
+ Mean   :-0.8679   Mean   : 6.741  \
+ 3rd Qu.:-0.1971   3rd Qu.: 7.031  \
+ Max.   : 1.0327   Max.   :11.036  \
+ NA's   :3100      NA's   :3100    \
+> str(datsss)\
+'data.frame':	6165 obs. of  6 variables:\
+ $ X          : int  1 2 3 4 5 6 7 8 9 10 ...\
+ $ schoolname : Factor w/ 842 levels "","\\xd8?ABAKRAMPA SENIOR HIGH TECHNICAL",..: 817 817 405 817 405 405 742 621 522 817 ...\
+ $ schoolcode : int  30107 30107 30103 30107 30103 30103 21003 10111 30104 30107 ...\
+ $ sssdistrict: Factor w/ 275 levels "","Abura/Asebu/ Kwaman",..: 96 96 96 96 96 96 176 128 96 96 ...\
+ $ ssslong    : num  -1.31 -1.31 -1.31 -1.31 -1.31 ...\
+ $ ssslat     : num  5.15 5.15 5.15 5.15 5.15 ...\
+> View(datsss)\
+> datstu <- read.csv("~/Documents/ECON 613/dat/datstu.csv")\
+> summary(datstu)\
+       X              score             agey            male        schoolcode1       schoolcode2     \
+ Min.   :     1   Min.   :158.0    Min.   : 9.00   Min.   :0.000   Min.   :  10101   Min.   :  10101  \
+ 1st Qu.: 85206   1st Qu.:252.0    1st Qu.:16.00   1st Qu.:0.000   1st Qu.:  21502   1st Qu.:  21502  \
+ Median :170412   Median :283.0    Median :17.00   Median :1.000   Median :  50105   Median :  50107  \
+ Mean   :170412   Mean   :291.1    Mean   :17.13   Mean   :0.549   Mean   : 239365   Mean   : 244223  \
+ 3rd Qu.:255618   3rd Qu.:324.0    3rd Qu.:18.00   3rd Qu.:1.000   3rd Qu.:  61201   3rd Qu.:  61202  \
+ Max.   :340823   Max.   :469.0    Max.   :57.00   Max.   :1.000   Max.   :9100501   Max.   :9100501  \
+                  NA's   :179887   NA's   :650                     NA's   :102       NA's   :163      \
+  schoolcode3       schoolcode4       schoolcode5       schoolcode6                choicepgm1    \
+ Min.   :  10101   Min.   :  10101   Min.   :  10101   Min.   :  10101   General Arts   :125850  \
+ 1st Qu.:  21502   1st Qu.:  21502   1st Qu.:  21201   1st Qu.:  21203   Business       : 63167  \
+ Median :  50113   Median :  50202   Median :  50204   Median :  50204   Home Economics : 51922  \
+ Mean   : 264627   Mean   : 315661   Mean   :  47539   Mean   :  47354   General Science: 28777  \
+ 3rd Qu.:  61202   3rd Qu.:  61203   3rd Qu.:  60801   3rd Qu.:  60704   Agriculture    : 26810  \
+ Max.   :9100501   Max.   :9100501   Max.   :9100101   Max.   :9090401   Visual Arts    : 23255  \
+ NA's   :195       NA's   :406       NA's   :17140     NA's   :17088     (Other)        : 21042  \
+           choicepgm2               choicepgm3               choicepgm4              choicepgm5    \
+ General Arts   :122728   General Arts   :122794   General Arts   :121461   General Arts  :122379  \
+ Business       : 65835   Business       : 62312   Business       : 58483   Business      : 57820  \
+ Home Economics : 51044   Home Economics : 51702   Home Economics : 51500   Home Economics: 51467  \
+ Agriculture    : 30313   Agriculture    : 32850   Agriculture    : 36925   Agriculture   : 34732  \
+ Visual Arts    : 26073   Visual Arts    : 27224   Visual Arts    : 27406   Visual Arts   : 21618  \
+ General Science: 22392   General Science: 19926   General Science: 18260                 : 18633  \
+ (Other)        : 22438   (Other)        : 24015   (Other)        : 26788   (Other)       : 34174  \
+          choicepgm6                                   jssdistrict       rankplace     \
+ General Arts  :124181   Accra Metropolitan                  : 33068   Min.   : 1.00   \
+ Business      : 55411   Kumasi Metro                        : 22640   1st Qu.: 1.00   \
+ Home Economics: 50776   Tema                                : 12546   Median : 3.00   \
+ Agriculture   : 35734   Shama/Ahanta/East (Sekondi/Takoradi):  8464   Mean   :15.45   \
+ Visual Arts   : 23501   Ga West (Amasaman)                  :  7970   3rd Qu.: 4.00   \
+               : 18954   Tamale                              :  6536   Max.   :99.00   \
+ (Other)       : 32266   (Other)                             :249599   NA's   :179888  \
+> str(datstu)\
+'data.frame':	340823 obs. of  18 variables:\
+ $ X          : int  1 2 3 4 5 6 7 8 9 10 ...\
+ $ score      : int  NA NA NA NA NA NA NA NA NA NA ...\
+ $ agey       : int  16 17 19 23 15 15 22 19 19 16 ...\
+ $ male       : int  0 0 0 1 0 0 1 1 1 0 ...\
+ $ schoolcode1: int  50112 70102 50702 90501 51802 10102 80301 40301 21303 80101 ...\
+ $ schoolcode2: int  50107 70602 50705 90403 51701 50103 80401 40401 21303 90401 ...\
+ $ schoolcode3: int  50202 70107 50115 90101 50205 51701 80302 40402 21201 50503 ...\
+ $ schoolcode4: int  50202 70105 50706 9090401 50207 50202 80402 40302 21201 50901 ...\
+ $ schoolcode5: int  50702 70605 51603 90102 51602 50601 80501 40202 20203 50501 ...\
+ $ schoolcode6: int  50901 70603 50703 90303 50204 51603 80902 40304 20106 50504 ...\
+ $ choicepgm1 : Factor w/ 32 levels "","Accounting",..: 18 15 7 31 18 15 15 15 7 15 ...\
+ $ choicepgm2 : Factor w/ 32 levels "","Accounting",..: 15 7 18 15 15 15 15 15 7 15 ...\
+ $ choicepgm3 : Factor w/ 33 levels "","Accounting",..: 32 15 7 4 18 15 15 15 16 15 ...\
+ $ choicepgm4 : Factor w/ 32 levels "","Accounting",..: 31 14 17 20 14 14 14 4 15 14 ...\
+ $ choicepgm5 : Factor w/ 23 levels "","Accounting",..: 15 15 15 3 13 15 13 3 13 13 ...\
+ $ choicepgm6 : Factor w/ 22 levels "","Accounting",..: 12 12 5 12 14 14 12 3 12 12 ...\
+ $ jssdistrict: Factor w/ 140 levels "","Abura/Asebu/Kwamankese (Abura Dunkwa)",..: 45 67 85 75 33 84 96 71 54 60 ...\
+ $ rankplace  : int  NA NA NA NA NA NA NA NA NA NA ...\
+> View(datstu)\
+> datjss <- read.csv("~/Documents/ECON 613/dat/datjss.csv")\
+> summary(datjss)\
+       X                                        jssdistrict     point_x           point_y      \
+ Min.   :  1.0                                        :  1   Min.   :-3.0435   Min.   : 4.835  \
+ 1st Qu.: 35.5   Abura/Asebu/Kwamankese (Abura Dunkwa):  1   1st Qu.:-1.9191   1st Qu.: 5.981  \
+ Median : 70.0   Accra Metropolitan                   :  1   Median :-1.1173   Median : 6.807  \
+ Mean   : 70.0   Adaklu Anigbe (Kpetoe)               :  1   Mean   :-1.1278   Mean   : 7.339  \
+ 3rd Qu.:104.5   Adansi East (New Edubiase)           :  1   3rd Qu.:-0.2829   3rd Qu.: 8.371  \
+ Max.   :139.0   Adansi North (Fomena)                :  1   Max.   : 1.0327   Max.   :11.036  \
+                 (Other)                              :133                                     \
+> str(datjss)\
+'data.frame':	139 obs. of  4 variables:\
+ $ X          : int  1 2 3 4 5 6 7 8 9 10 ...\
+ $ jssdistrict: Factor w/ 139 levels "","Abura/Asebu/Kwamankese (Abura Dunkwa)",..: 114 106 4 119 118 17 64 103 48 6 ...\
+ $ point_x    : num  0.208 -2.361 0.489 -0.75 -2.287 ...\
+ $ point_y    : num  6.38 9.41 6.38 10.68 7.95 ...\
+> View(datjss)\
+> install.packages("stringr")\
+Error in install.packages : Updating loaded packages\
+> library(stringr)\
+> \
+> # Exercise 1\
+> # No. of students\
+> length(datstu$X)\
+[1] 340823\
+> ## I find that there are 340,823 students.\
+> \
+> # No. of schools\
+> length(unique(datsss$schoolcode))\
+[1] 898\
+> ## Initially, I get a result of 898 schools. However, there are schools in the data file with missing\
+> ## information or NAs. If I remove these lines of data (in a copied database so as to not affect\
+> ## the original) I find 689 schools. That means that 209 schools have missing or NA data. \
+> datsss_copy <- datsss[complete.cases(datsss[, 5:6]),]\
+> length(unique(datsss_copy$schoolcode))\
+[1] 689\
+> \
+> # No. of programs\
+> uq_pgm <- unique(c(levels(datstu$choicepgm1), levels(datstu$choicepgm2), levels(datstu$choicepgm3), \
++              levels(datstu$choicepgm4), levels(datstu$choicepgm5), levels(datstu$choicepgm6)))\
+> View(uq_pgm)\
+> length(uq_pgm)\
+[1] 33\
+> ## Initially, I find that there are 33 programs. However, upon closer inspection, there is one blank\
+> ## value being included in these 33, so I have to subtract 1 to get the final answer of 32 programs.\
+> \
+> # No. of choices (school, program bundle)\
+> datstu$choice1 <- paste(datstu$schoolcode1, datstu$choicepgm1, sep = "")\
+> datstu$choice2 <- paste(datstu$schoolcode2, datstu$choicepgm2, sep = "")\
+> datstu$choice3 <- paste(datstu$schoolcode3, datstu$choicepgm3, sep = "")\
+> datstu$choice4 <- paste(datstu$schoolcode4, datstu$choicepgm4, sep = "")\
+> datstu$choice5 <- paste(datstu$schoolcode5, datstu$choicepgm5, sep = "")\
+> datstu$choice6 <- paste(datstu$schoolcode6, datstu$choicepgm6, sep = "")\
+> all_choices <- unique(c(datstu$choice1, datstu$choice2, datstu$choice3, datstu$choice4,\
++                         datstu$choice5, datstu$choice6))\
+> all_choices <- all_choices[!grepl('NA',all_choices)]\
+> all_choices <- all_choices[!grepl('^\\\\d+$',all_choices)]\
+> length(all_choices)\
+[1] 2773\
+> ## First, I must concatenate all possible school code and program choices and then collapse this to\
+> ## all of the unique values. Once I do so, I find there are cases where there is either a "NA" or\
+> ## a blank in the school code and/or program choices. I need to remove these (given these were\
+> ## obviously some sort of data entry error) and arrive at 2,773 choices.\
+> \
+> # No. missing test score\
+> sum(is.na(datstu$score))\
+[1] 179887\
+> ## I find that there are 179,887 missing test scores.\
+> \
+> # No. apply to same school (different programs)\
+> sum(apply(datstu[match("schoolcode1", names(datstu)):match("schoolcode6", names(datstu))], \
++           1, function(x) any(duplicated(x))))\
+[1] 133668\
+> ## I find that there are 133,668 individuals who apply to the same school code but different programs.\
+> \
+> # No. apply to less than 6 choices\
+> datstu$no_choices <- rowSums(is.na(datstu[match("schoolcode1", names(datstu)):\
++                                          match("schoolcode6", names(datstu))]))\
+> sum(datstu$no_choices > 0)\
+[1] 17734\
+> ## I sum the number of school codes showing up as "NA" in the data (which is a proxy and equivalent\
+> ## to the number of choices not being applied to). I sum the number of individuals with more than 0 \
+> ## choices that are "NA" to find that there are 17,734 individuals who apply to less than 6 choices.\
+> \
+> # Exercise 2\
+> # Create a school level dataset, where each row corresponds to a (school, program) choice\
+> ##  District, latitude, longitude\
+> datstu$choiceadmit <- \
++   with(datstu, \
++        ifelse(rankplace == 1, choice1,\
++               ifelse(rankplace == 2, choice2,\
++                      ifelse(rankplace == 3, choice3,\
++                             ifelse(rankplace == 4, choice4,\
++                                    ifelse(rankplace == 5, choice5,\
++                                           ifelse (rankplace == 6, choice6,\
++                                                   ifelse(rankplace == 99, "Not Admit", "NA"))))))))\
+> ## I first create a column with the choices that students were admitted to from 1-6. \
+> \
+> school_data <- data.frame(choices = all_choices)\
+> school_data$schoolcode <- str_extract(school_data$choices, "[0-9]+")\
+> school_data$choicepgm <- gsub("[0-9]+","",school_data$choices)\
+> school_data <- unique(merge(school_data, datsss_copy[, c("schoolcode", "sssdistrict", \
++                                                          "ssslong", "ssslat")], by = "schoolcode"))\
+> ## I then create a school-level dataset and pull in the district, longitude, and latitude of each\
+> ## school.\
+> \
+> install.packages("dplyr")\
+trying URL 'https://cran.rstudio.com/bin/macosx/el-capitan/contrib/3.5/dplyr_0.7.8.tgz'\
+Content type 'application/x-gzip' length 5720340 bytes (5.5 MB)\
+==================================================\
+downloaded 5.5 MB\
+\
+\
+The downloaded binary packages are in\
+	/var/folders/x9/rx8wwzkn7_95zp76rxwxswkm0000gn/T//RtmpD8vTva/downloaded_packages\
+> library(dplyr)\
+> choice_calcs <- datstu %>%\
++   group_by(choiceadmit) %>%\
++   summarize(cutoff = min(score), quality = mean(score), size = length(score))\
+> school_data <- merge(school_data, choice_calcs[, c("choiceadmit", "cutoff", "quality", "size")], \
++                             by.x = "choices", by.y = "choiceadmit", all.x = TRUE)\
+> school_data <- school_data %>%\
++   mutate(size = ifelse(is.na(size), 0, size))\
+> ## I then use a package named dplyr to calculate the cutoff, quality, and size of each choice, as\
+> ## defined by the problem, and merged the mathematical data with the school-level dataset from above.\
+> ## I found that there was a difference between the number of choices as originally found in (1) = \
+> ## 2,733 and the number of choices for which we have actual score data, meaning the data was missing\
+> ## or nobody was admitted to that specific choice. Namely, there are 473 choices that did not have \
+> ## score data and so did not have any cutoff or quality data (including those not admitted to any\
+> ## of their choices and "NA").\
+> # Exercise 3\
+> # Use given formula to calculate the distance between junior HS and senior HS\
+> datjss_copy <- datjss\
+> colnames(datjss_copy) <- c("X", "jssdistrict", "jsslong", "jsslat")\
+> datstu_calcs <- datstu[,c("X", "score", "rankplace", "choiceadmit", "schoolcode1", "schoolcode2", \
++                           "schoolcode3", "schoolcode4", "schoolcode5", "schoolcode6", "jssdistrict", \
++                           "choice1", "choice2", "choice3", "choice4", "choice5", "choice6")]\
+> datstu_calcs <- unique(merge(datstu_calcs, datjss_copy[, c("jssdistrict", "jsslong", "jsslat")],\
++                                           by = "jssdistrict", all.x = TRUE))\
+> ## First, I create a copy of datjss so that we don't make any changes to the raw data files. Next, \
+> ## I am making a copy of "datstu" that contains fewer columns so that the code runs quicker. Finally,\
+> ## I am merging these two datasets.\
+> \
+> sum(is.na(datstu_calcs$jsslong))\
+[1] 25\
+> ## As an aside, I found that there are 25 entries with a "NA" in jssdistrict in datstu.\
+> \
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                              by.x = "schoolcode1", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong1"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat1"\
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                          by.x = "schoolcode2", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong2"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat2"\
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                          by.x = "schoolcode3", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong3"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat3"\
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                          by.x = "schoolcode4", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong4"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat4"\
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                          by.x = "schoolcode5", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong5"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat5"\
+> datstu_calcs <- unique(merge(datstu_calcs, datsss_copy[, c("schoolcode", "ssslong", "ssslat")],\
++                          by.x = "schoolcode6", by.y = "schoolcode", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslong"] <- "ssslong6"\
+>   names(datstu_calcs)[names(datstu_calcs) == "ssslat"] <- "ssslat6"\
+> ## Next, I wanted to merge in the longitude and latitude of each individual school that was applied to\
+> ## so we can understand the location of each school for each of ranked choices 1-6. Ideally, I would \
+> ## do this through a "for (i in 1:6) loop if there were many more choices than just 6, but when I \
+> ## tried to do so it took much longer for R to process than having individual code for each choice.\
+>   \
+> datstu_calcs$dist1 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong1-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat1-datstu_calcs$jsslat))^2)\
+> datstu_calcs$dist2 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong2-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat2-datstu_calcs$jsslat))^2)\
+> datstu_calcs$dist3 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong3-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat3-datstu_calcs$jsslat))^2)\
+> datstu_calcs$dist4 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong4-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat4-datstu_calcs$jsslat))^2)\
+> datstu_calcs$dist5 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong5-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat5-datstu_calcs$jsslat))^2)\
+> datstu_calcs$dist6 <- \
++   sqrt(((69.172*(datstu_calcs$ssslong6-datstu_calcs$jsslong)*cos(datstu_calcs$jsslat/57.3))^2)+\
++          (69.172*(datstu_calcs$ssslat6-datstu_calcs$jsslat))^2)\
+> ## Finally, I calculated the distances for each school that was applied to by each individual using\
+> ## the given equation. Again, this would ideally be calculated through a loop but I found that this\
+> ## method took much more time than having individual code for each column.\
+> \
+> # Exercise 4\
+> # Report avg and SD for each ranked choice\
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                              by.x = "choice1", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff1"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality1"\
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                              by.x = "choice2", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff2"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality2"\
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                                by.x = "choice3", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff3"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality3"  \
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                                by.x = "choice4", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff4"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality4"\
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                                by.x = "choice5", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff5"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality5"\
+> datstu_calcs <- unique(merge(datstu_calcs, school_data[, c("choices", "cutoff", "quality")],\
++                                by.x = "choice6", by.y = "choices", all.x = TRUE))\
+>   names(datstu_calcs)[names(datstu_calcs) == "cutoff"] <- "cutoff6"\
+>   names(datstu_calcs)[names(datstu_calcs) == "quality"] <- "quality6"\
+> ## First, I added in the cutoff and quality for each of the individual's 6 ranked choices by merging\
+> ## these values in from the individual school-level data. Again, this would ideally be calculated \
+> ## through a loop but I found that this method took much more time than having individual code for \
+> ## each column.\
+>   \
+> rank_choices <- data.frame("rankchoice" = c(1:6))\
+> rank_choices$avgcutoff <- \
++   c(mean(datstu_calcs$cutoff1, na.rm = TRUE), mean(datstu_calcs$cutoff2, na.rm = TRUE),\
++     mean(datstu_calcs$cutoff3, na.rm = TRUE), mean(datstu_calcs$cutoff4, na.rm = TRUE),\
++     mean(datstu_calcs$cutoff5, na.rm = TRUE), mean(datstu_calcs$cutoff6, na.rm = TRUE))\
+> rank_choices$sdcutoff <- \
++   c(sd(datstu_calcs$cutoff1, na.rm = TRUE), sd(datstu_calcs$cutoff2, na.rm = TRUE),\
++     sd(datstu_calcs$cutoff3, na.rm = TRUE), sd(datstu_calcs$cutoff4, na.rm = TRUE),\
++     sd(datstu_calcs$cutoff5, na.rm = TRUE), sd(datstu_calcs$cutoff6, na.rm = TRUE))\
+> rank_choices$avgquality <- \
++   c(mean(datstu_calcs$quality1, na.rm = TRUE), mean(datstu_calcs$quality2, na.rm = TRUE),\
++     mean(datstu_calcs$quality3, na.rm = TRUE), mean(datstu_calcs$quality4, na.rm = TRUE),\
++     mean(datstu_calcs$quality5, na.rm = TRUE), mean(datstu_calcs$quality6, na.rm = TRUE))\
+> rank_choices$sdquality <- \
++   c(sd(datstu_calcs$quality1, na.rm = TRUE), sd(datstu_calcs$quality2, na.rm = TRUE),\
++     sd(datstu_calcs$quality3, na.rm = TRUE), sd(datstu_calcs$quality4, na.rm = TRUE),\
++     sd(datstu_calcs$quality5, na.rm = TRUE), sd(datstu_calcs$quality6, na.rm = TRUE))\
+> rank_choices$avgdistance <- \
++   c(mean(datstu_calcs$dist1, na.rm = TRUE), mean(datstu_calcs$dist2, na.rm = TRUE),\
++     mean(datstu_calcs$dist3, na.rm = TRUE), mean(datstu_calcs$dist4, na.rm = TRUE),\
++     mean(datstu_calcs$dist5, na.rm = TRUE), mean(datstu_calcs$dist6, na.rm = TRUE))\
+> rank_choices$sddistance <- \
++   c(sd(datstu_calcs$dist1, na.rm = TRUE), sd(datstu_calcs$dist2, na.rm = TRUE),\
++     sd(datstu_calcs$dist3, na.rm = TRUE), sd(datstu_calcs$dist4, na.rm = TRUE),\
++     sd(datstu_calcs$dist5, na.rm = TRUE), sd(datstu_calcs$dist6, na.rm = TRUE))\
+> print(rank_choices)\
+  rankchoice avgcutoff sdcutoff avgquality sdquality avgdistance sddistance\
+1          1  294.2372 54.12556   316.6898  48.53860    28.24994   44.23394\
+2          2  281.3566 49.57892   304.5832  43.82404    28.17719   42.57611\
+3          3  272.6860 46.96337   296.7897  41.16625    27.31729   41.10339\
+4          4  263.0766 45.13990   288.5767  39.26620    24.36160   39.02033\
+5          5  250.0849 32.06955   277.5041  26.73123    28.67274   28.30688\
+6          6  246.1803 31.44553   274.0787  26.23097    29.48252   28.40790\
+> ## Finally, I create a new data table to house the cutoff, quality, and distance average/standard\
+> ## deviations by each ranked choice. Again, this would ideally be calculated through a loop but\
+> ## given only 6 ranked choices was quicker to run as seen above.\
+>\
+> # Redo same table, differentiating by student test score quantiles\
+> datstu_calcs$scorequartile <- cut(datstu_calcs$score, \
++                               breaks = quantile(datstu_calcs$score, seq(0, 1, by = 0.25), na.rm = TRUE), \
++                               include.lowest = TRUE, labels = 1:4)\
+> ## First, I calculated the student test score quartiles and assigned labels of 1 through 4 for their\
+> ## respective quartile, where 1 = 0-25th %ile, 2 = 25th-50th %ile, 3 = 50th-75th %ile, and\
+> ## 4 = 75th-100 %ile.\
+> \
+> datstu_firstq <- datstu_calcs %>%\
++   filter(scorequartile == 1)\
+> first_quartile_choices <- data.frame("first quartile score by ranked choices" = c(1:6))\
+> first_quartile_choices$avgcutoff <- \
++   c(mean(datstu_firstq$cutoff1, na.rm = TRUE), mean(datstu_firstq$cutoff2, na.rm = TRUE),\
++     mean(datstu_firstq$cutoff3, na.rm = TRUE), mean(datstu_firstq$cutoff4, na.rm = TRUE),\
++     mean(datstu_firstq$cutoff5, na.rm = TRUE), mean(datstu_firstq$cutoff6, na.rm = TRUE))\
+> first_quartile_choices$sdcutoff <- \
++   c(sd(datstu_firstq$cutoff1, na.rm = TRUE), sd(datstu_firstq$cutoff2, na.rm = TRUE),\
++     sd(datstu_firstq$cutoff3, na.rm = TRUE), sd(datstu_firstq$cutoff4, na.rm = TRUE),\
++     sd(datstu_firstq$cutoff5, na.rm = TRUE), sd(datstu_firstq$cutoff6, na.rm = TRUE))\
+> first_quartile_choices$avgquality <- \
++   c(mean(datstu_firstq$quality1, na.rm = TRUE), mean(datstu_firstq$quality2, na.rm = TRUE),\
++     mean(datstu_firstq$quality3, na.rm = TRUE), mean(datstu_firstq$quality4, na.rm = TRUE),\
++     mean(datstu_firstq$quality5, na.rm = TRUE), mean(datstu_firstq$quality6, na.rm = TRUE))\
+> first_quartile_choices$sdquality <- \
++   c(sd(datstu_firstq$quality1, na.rm = TRUE), sd(datstu_firstq$quality2, na.rm = TRUE),\
++     sd(datstu_firstq$quality3, na.rm = TRUE), sd(datstu_firstq$quality4, na.rm = TRUE),\
++     sd(datstu_firstq$quality5, na.rm = TRUE), sd(datstu_firstq$quality6, na.rm = TRUE))\
+> first_quartile_choices$avgdistance <- \
++   c(mean(datstu_firstq$dist1, na.rm = TRUE), mean(datstu_firstq$dist2, na.rm = TRUE),\
++     mean(datstu_firstq$dist3, na.rm = TRUE), mean(datstu_firstq$dist4, na.rm = TRUE),\
++     mean(datstu_firstq$dist5, na.rm = TRUE), mean(datstu_firstq$dist6, na.rm = TRUE))\
+> first_quartile_choices$sddistance <- \
++   c(sd(datstu_firstq$dist1, na.rm = TRUE), sd(datstu_firstq$dist2, na.rm = TRUE),\
++     sd(datstu_firstq$dist3, na.rm = TRUE), sd(datstu_firstq$dist4, na.rm = TRUE),\
++     sd(datstu_firstq$dist5, na.rm = TRUE), sd(datstu_firstq$dist6, na.rm = TRUE))\
+> print(first_quartile_choices)\
+  first.quartile.score.by.ranked.choices avgcutoff sdcutoff avgquality sdquality avgdistance sddistance\
+1                                      1  283.4534 44.59166   306.7529  38.94246    28.27913   44.89946\
+2                                      2  270.0009 41.40760   294.3333  35.90342    28.69947   43.71274\
+3                                      3  261.2568 40.43917   286.6283  34.93599    27.67535   42.15750\
+4                                      4  251.4020 39.75034   278.2927  34.20236    25.34848   40.95437\
+5                                      5  246.8855 31.22731   274.3982  25.74618    29.32590   28.78110\
+6                                      6  242.4731 30.73168   270.5157  25.52473    29.82050   28.64225\
+> \
+> datstu_secondq <- datstu_calcs %>%\
++   filter(scorequartile == 2)\
+> second_quartile_choices <- data.frame("second quartile score by ranked choices" = c(1:6))\
+> second_quartile_choices$avgcutoff <- \
++   c(mean(datstu_secondq$cutoff1, na.rm = TRUE), mean(datstu_secondq$cutoff2, na.rm = TRUE),\
++     mean(datstu_secondq$cutoff3, na.rm = TRUE), mean(datstu_secondq$cutoff4, na.rm = TRUE),\
++     mean(datstu_secondq$cutoff5, na.rm = TRUE), mean(datstu_secondq$cutoff6, na.rm = TRUE))\
+> second_quartile_choices$sdcutoff <- \
++   c(sd(datstu_secondq$cutoff1, na.rm = TRUE), sd(datstu_secondq$cutoff2, na.rm = TRUE),\
++     sd(datstu_secondq$cutoff3, na.rm = TRUE), sd(datstu_secondq$cutoff4, na.rm = TRUE),\
++     sd(datstu_secondq$cutoff5, na.rm = TRUE), sd(datstu_secondq$cutoff6, na.rm = TRUE))\
+> second_quartile_choices$avgquality <- \
++   c(mean(datstu_secondq$quality1, na.rm = TRUE), mean(datstu_secondq$quality2, na.rm = TRUE),\
++     mean(datstu_secondq$quality3, na.rm = TRUE), mean(datstu_secondq$quality4, na.rm = TRUE),\
++     mean(datstu_secondq$quality5, na.rm = TRUE), mean(datstu_secondq$quality6, na.rm = TRUE))\
+> second_quartile_choices$sdquality <- \
++   c(sd(datstu_secondq$quality1, na.rm = TRUE), sd(datstu_secondq$quality2, na.rm = TRUE),\
++     sd(datstu_secondq$quality3, na.rm = TRUE), sd(datstu_secondq$quality4, na.rm = TRUE),\
++     sd(datstu_secondq$quality5, na.rm = TRUE), sd(datstu_secondq$quality6, na.rm = TRUE))\
+> second_quartile_choices$avgdistance <- \
++   c(mean(datstu_secondq$dist1, na.rm = TRUE), mean(datstu_secondq$dist2, na.rm = TRUE),\
++     mean(datstu_secondq$dist3, na.rm = TRUE), mean(datstu_secondq$dist4, na.rm = TRUE),\
++     mean(datstu_secondq$dist5, na.rm = TRUE), mean(datstu_secondq$dist6, na.rm = TRUE))\
+> second_quartile_choices$sddistance <- \
++   c(sd(datstu_secondq$dist1, na.rm = TRUE), sd(datstu_secondq$dist2, na.rm = TRUE),\
++     sd(datstu_secondq$dist3, na.rm = TRUE), sd(datstu_secondq$dist4, na.rm = TRUE),\
++     sd(datstu_secondq$dist5, na.rm = TRUE), sd(datstu_secondq$dist6, na.rm = TRUE))\
+> print(second_quartile_choices)\
+  second.quartile.score.by.ranked.choices avgcutoff sdcutoff avgquality sdquality avgdistance sddistance\
+1                                       1  301.0173 45.03198   322.7784  39.25254    31.69949   48.20433\
+2                                       2  285.1532 42.37029   308.0621  36.63525    31.22761   46.57879\
+3                                       3  273.9051 41.35209   298.0751  35.49417    29.81820   45.01575\
+4                                       4  262.0434 40.85982   288.0557  34.66926    26.12894   42.53877\
+5                                       5  253.4241 31.44824   280.8732  25.36836    29.94637   28.51642\
+6                                       6  248.7229 31.12694   276.7619  25.21741    30.73509   28.56983\
+> \
+> datstu_thirdq <- datstu_calcs %>%\
++   filter(scorequartile == 3)\
+> third_quartile_choices <- data.frame("third quartile %ile score by ranked choices" = c(1:6))\
+> third_quartile_choices$avgcutoff <- \
++   c(mean(datstu_thirdq$cutoff1, na.rm = TRUE), mean(datstu_thirdq$cutoff2, na.rm = TRUE),\
++     mean(datstu_thirdq$cutoff3, na.rm = TRUE), mean(datstu_thirdq$cutoff4, na.rm = TRUE),\
++     mean(datstu_thirdq$cutoff5, na.rm = TRUE), mean(datstu_thirdq$cutoff6, na.rm = TRUE))\
+> third_quartile_choices$sdcutoff <- \
++   c(sd(datstu_thirdq$cutoff1, na.rm = TRUE), sd(datstu_thirdq$cutoff2, na.rm = TRUE),\
++     sd(datstu_thirdq$cutoff3, na.rm = TRUE), sd(datstu_thirdq$cutoff4, na.rm = TRUE),\
++     sd(datstu_thirdq$cutoff5, na.rm = TRUE), sd(datstu_thirdq$cutoff6, na.rm = TRUE))\
+> third_quartile_choices$avgquality <- \
++   c(mean(datstu_thirdq$quality1, na.rm = TRUE), mean(datstu_thirdq$quality2, na.rm = TRUE),\
++     mean(datstu_thirdq$quality3, na.rm = TRUE), mean(datstu_thirdq$quality4, na.rm = TRUE),\
++     mean(datstu_thirdq$quality5, na.rm = TRUE), mean(datstu_thirdq$quality6, na.rm = TRUE))\
+> third_quartile_choices$sdquality <- \
++   c(sd(datstu_thirdq$quality1, na.rm = TRUE), sd(datstu_thirdq$quality2, na.rm = TRUE),\
++     sd(datstu_thirdq$quality3, na.rm = TRUE), sd(datstu_thirdq$quality4, na.rm = TRUE),\
++     sd(datstu_thirdq$quality5, na.rm = TRUE), sd(datstu_thirdq$quality6, na.rm = TRUE))\
+> third_quartile_choices$avgdistance <- \
++   c(mean(datstu_thirdq$dist1, na.rm = TRUE), mean(datstu_thirdq$dist2, na.rm = TRUE),\
++     mean(datstu_thirdq$dist3, na.rm = TRUE), mean(datstu_thirdq$dist4, na.rm = TRUE),\
++     mean(datstu_thirdq$dist5, na.rm = TRUE), mean(datstu_thirdq$dist6, na.rm = TRUE))\
+> third_quartile_choices$sddistance <- \
++   c(sd(datstu_thirdq$dist1, na.rm = TRUE), sd(datstu_thirdq$dist2, na.rm = TRUE),\
++     sd(datstu_thirdq$dist3, na.rm = TRUE), sd(datstu_thirdq$dist4, na.rm = TRUE),\
++     sd(datstu_thirdq$dist5, na.rm = TRUE), sd(datstu_thirdq$dist6, na.rm = TRUE))\
+> print(third_quartile_choices)\
+  third.quartile..ile.score.by.ranked.choices avgcutoff sdcutoff avgquality sdquality avgdistance\
+1                                           1  323.0130 43.53460   342.9473  38.32348    34.86944\
+2                                           2  304.1427 42.36073   325.3159  36.63066    33.46690\
+3                                           3  290.5017 41.65390   313.0342  35.69395    31.35241\
+4                                           4  276.2045 41.29130   300.7063  34.98959    26.97811\
+5                                           5  260.0547 31.18633   287.4211  24.47648    30.78063\
+6                                           6  254.6174 31.21378   282.5944  24.75947    31.30439\
+  sddistance\
+1   48.94770\
+2   46.83600\
+3   44.98074\
+4   42.57398\
+5   28.11440\
+6   28.20151\
+> \
+> datstu_fourthq <- datstu_calcs %>%\
++   filter(scorequartile == 4)\
+> fourth_quartile_choices <- data.frame("fourth quartile score by ranked choices" = c(1:6))\
+> fourth_quartile_choices$avgcutoff <- \
++   c(mean(datstu_fourthq$cutoff1, na.rm = TRUE), mean(datstu_fourthq$cutoff2, na.rm = TRUE),\
++     mean(datstu_fourthq$cutoff3, na.rm = TRUE), mean(datstu_fourthq$cutoff4, na.rm = TRUE),\
++     mean(datstu_fourthq$cutoff5, na.rm = TRUE), mean(datstu_fourthq$cutoff6, na.rm = TRUE))\
+> fourth_quartile_choices$sdcutoff <- \
++   c(sd(datstu_fourthq$cutoff1, na.rm = TRUE), sd(datstu_fourthq$cutoff2, na.rm = TRUE),\
++     sd(datstu_fourthq$cutoff3, na.rm = TRUE), sd(datstu_fourthq$cutoff4, na.rm = TRUE),\
++     sd(datstu_fourthq$cutoff5, na.rm = TRUE), sd(datstu_fourthq$cutoff6, na.rm = TRUE))\
+> fourth_quartile_choices$avgquality <- \
++   c(mean(datstu_fourthq$quality1, na.rm = TRUE), mean(datstu_fourthq$quality2, na.rm = TRUE),\
++     mean(datstu_fourthq$quality3, na.rm = TRUE), mean(datstu_fourthq$quality4, na.rm = TRUE),\
++     mean(datstu_fourthq$quality5, na.rm = TRUE), mean(datstu_fourthq$quality6, na.rm = TRUE))\
+> fourth_quartile_choices$sdquality <- \
++   c(sd(datstu_fourthq$quality1, na.rm = TRUE), sd(datstu_fourthq$quality2, na.rm = TRUE),\
++     sd(datstu_fourthq$quality3, na.rm = TRUE), sd(datstu_fourthq$quality4, na.rm = TRUE),\
++     sd(datstu_fourthq$quality5, na.rm = TRUE), sd(datstu_fourthq$quality6, na.rm = TRUE))\
+> fourth_quartile_choices$avgdistance <- \
++   c(mean(datstu_fourthq$dist1, na.rm = TRUE), mean(datstu_fourthq$dist2, na.rm = TRUE),\
++     mean(datstu_fourthq$dist3, na.rm = TRUE), mean(datstu_fourthq$dist4, na.rm = TRUE),\
++     mean(datstu_fourthq$dist5, na.rm = TRUE), mean(datstu_fourthq$dist6, na.rm = TRUE))\
+> fourth_quartile_choices$sddistance <- \
++   c(sd(datstu_fourthq$dist1, na.rm = TRUE), sd(datstu_fourthq$dist2, na.rm = TRUE),\
++     sd(datstu_fourthq$dist3, na.rm = TRUE), sd(datstu_fourthq$dist4, na.rm = TRUE),\
++     sd(datstu_fourthq$dist5, na.rm = TRUE), sd(datstu_fourthq$dist6, na.rm = TRUE))\
+> print(fourth_quartile_choices)\
+  fourth.quartile.score.by.ranked.choices avgcutoff sdcutoff avgquality sdquality avgdistance sddistance\
+1                                       1  362.1617 38.09107   380.4723  34.85716    41.98427   47.69021\
+2                                       2  340.5253 38.24956   358.9266  33.94823    38.49917   45.44718\
+3                                       3  324.1210 39.78167   343.6262  34.51467    33.97069   42.73751\
+4                                       4  306.9100 41.69904   328.3540  35.64904    27.51189   40.39295\
+5                                       5  266.4038 30.28669   294.6718  22.71537    31.05815   28.04709\
+6                                       6  260.5411 30.53754   289.3772  23.10501    31.59482   28.02791\
+> ## I then split the datstu_calcs table into 4 tables, 1 for each quartile (for ease of creating)\
+> ## the summary statistics. Finally, as I did earlier in part (4), I created a table reporting the\
+> ## average and standard deviation for each ranked choice for each of the 3 variables differentiated\
+> ## by each student test quartile, i.e.a unique table for each student test score quartile. Again, \
+> ## loops would have been ideal here but I found that it took R way too much time to process the\
+> ## same information through a loop rather than just copying & pasting and changing the references\
+> ## to the correct data.\
+>\
+> # Exercise 5\
+> # Group schools by decile of selectivity (cutoffs) and compute for each individual the # of groups\
+> # in the application.\
+> school_data$decile <- cut(school_data$cutoff, \
++                           breaks = quantile(school_data$cutoff, seq(0, 1, by = 0.1), na.rm = TRUE),\
++                           include.lowest = TRUE, labels = 1:10)\
+> ## First, I have computed the deciles of cutoffs for each choice (school, program bundle).\
+> \
+> datstu_groups <- datstu[,c("X", "score", "choice1", "choice2", "choice3", "choice4", "choice5", \
++                            "choice6")]\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice1",\
++                               by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile1"\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice2",\
++                                by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile2"\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice3",\
++                                by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile3"\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice4",\
++                                by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile4"\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice5",\
++                                by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile5"\
+> datstu_groups <- unique(merge(datstu_groups, school_data[, c("choices", "decile")], by.x = "choice6",\
++                                by.y = "choices", all.x = TRUE))\
+>   names(datstu_groups)[names(datstu_groups) == "decile"] <- "decile6"\
+> ## Next, I am merging these deciles into a copy of "datstu" that contains fewer columns so that the\
+> ## code runs quicker. Ideally, I'd use a loop, but it was taking R a long time to do so.\
+>   \
+> datstu_groups$nodeciles <- apply(datstu_groups[match("decile1", names(datstu_groups)):\
++                                               match("decile6", names(datstu_groups))], 1, \
++                               function(x) length(unique(x)))\
+> datstu_groups$nadeciles <- ifelse(rowSums(is.na(datstu_groups[match("decile1", names(datstu_groups)):\
++                                                    match("decile6", names(datstu_groups))]))>0,1,0)\
+> datstu_groups$groups <- datstu_groups$nodeciles - datstu_groups$nadeciles\
+> ## The column "groups" will contain the number of groups of deciles to which each individual applied.\
+>\
+> # Redo this, by student test score (quantile)\
+> datstu_groups$scorequartile <- cut(datstu_groups$score, \
++                                    breaks = quantile(datstu_groups$score, seq(0, 1, by = 0.25), \
++                                                     na.rm = TRUE), include.lowest = TRUE, labels = 1:4)\
+> ## First, I add the quantile data to the groups dataset I created above.\
+> \
+> datstu_groupstats <- datstu_groups %>%\
++   group_by(scorequartile) %>%\
++   summarize(MinGroups = min(groups, na.rm = TRUE), AvgGroups = mean(groups, na.rm = TRUE), \
++             MaxGroups = max(groups, na.rm = TRUE), SDGroups = sd(groups, na.rm = TRUE))\
+> datstu_groupstats <- na.omit(datstu_groupstats)\
+> print(datstu_groupstats)\
+# A tibble: 4 x 5\
+  scorequartile MinGroups AvgGroups MaxGroups SDGroups\
+  <fct>             <dbl>     <dbl>     <dbl>    <dbl>\
+1 1                     0      4.17         6    0.915\
+2 2                     0      4.10         6    0.917\
+3 3                     1      3.95         6    0.922\
+4 4                     0      3.55         6    0.922\
+> \
+> datstu_decilestats <- datstu_groups %>%\
++   group_by(scorequartile) %>%\
++   summarize(avgdecile1 = mean(as.numeric(decile1), na.rm = TRUE), sddecile1 = sd(decile1, na.rm = TRUE),\
++             avgdecile2 = mean(as.numeric(decile2), na.rm = TRUE), sddecile2 = sd(decile2, na.rm = TRUE),\
++             avgdecile3 = mean(as.numeric(decile3), na.rm = TRUE), sddecile3 = sd(decile3, na.rm = TRUE),\
++             avgdecile4 = mean(as.numeric(decile4), na.rm = TRUE), sddecile4 = sd(decile4, na.rm = TRUE),\
++             avgdecile5 = mean(as.numeric(decile5), na.rm = TRUE), sddecile5 = sd(decile5, na.rm = TRUE),\
++             avgdecile6 = mean(as.numeric(decile6), na.rm = TRUE), sddecile6 = sd(decile6, na.rm = TRUE))\
+There were 30 warnings (use warnings() to see them)\
+> datstu_decilestats <- na.omit(datstu_decilestats)\
+> print(datstu_decilestats)\
+# A tibble: 4 x 13\
+  scorequartile avgdecile1 sddecile1 avgdecile2 sddecile2 avgdecile3 sddecile3 avgdecile4 sddecile4\
+  <fct>              <dbl>     <dbl>      <dbl>     <dbl>      <dbl>     <dbl>      <dbl>     <dbl>\
+1 1                   7.27     2.37        6.63      2.46       6.12      2.58       5.44      2.70\
+2 2                   8.04     2.08        7.41      2.23       6.86      2.38       6.15      2.58\
+3 3                   8.81     1.70        8.22      1.92       7.68      2.12       6.98      2.37\
+4 4                   9.65     0.974       9.34      1.27       8.93      1.54       8.34      1.88\
+# \'85 with 4 more variables: avgdecile5 <dbl>, sddecile5 <dbl>, avgdecile6 <dbl>, sddecile6 <dbl>\
+> ## I then created two summaries of the grouping data by quartile. First, I looked at some descriptive\
+> ## statistics of the groups themselves by quartile. In the last table, I look at descriptive statistics\
+> ## (specifically average and standard deviation) of the deciles that we calculated above, to get a\
+> ## sense of how students with scores in different quartiles made decisions on the strength of school\
+> ## to which they would apply.}
